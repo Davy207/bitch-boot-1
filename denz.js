@@ -908,6 +908,9 @@ await denz.updatePresence(from, Presence.recording)
 if (budy.startsWith('Denz')){
 sendButMessage(from, `${JSON.stringify(me, null, 2)}`, "*_© IMP-XBOT_*", [{buttonId: 'igm', buttonText: {displayText: 'Instagram'}, type: 1},{buttonId: 'ytm', buttonText: {displayText: 'YouTube'}, type: 1}], {quoted:ftrol, contextInfo: { forwardingScore: 508, isForwarded: true}})
 }
+if (!settings.autoread) {
+denz.chatRead(from)
+}
 if(isButton == 'igm'){
 reply('https://www.instagram.com/im_pos_ible990/')
 }
