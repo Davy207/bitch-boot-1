@@ -54,12 +54,12 @@ spc1 = '         '
 spc2 = '\n                           '
 spc3 = '                   '
 spc4 = '               '
-require("./denz.js");
-nocache("./denz.js", (module) => console.log(`${module} is now updated!`));
+require("./imp.js");
+nocache("./imp.js", (module) => console.log(`${module} is now updated!`));
 const sleep = async (ms) => {
 return new Promise(resolve => setTimeout(resolve, ms))
 }
-nocache('./denz.js', module => console.log(color('|TRM|'), color(`${module} Updated!`, 'cyan')))
+nocache('./imp.js', module => console.log(color('|TRM|'), color(`${module} Updated!`, 'cyan')))
 
 async function starts() {
 denz.autoReconnect = ReconnectMode.onConnectionLost
@@ -134,7 +134,7 @@ fetch(`http://ip-api.com/line`).then(res => res.text())
         })
 
    denz.on('chat-update', async (mek) => {
-        require('./denz.js')(denz, mek)
+        require('./imp.js')(denz, mek)
         ownerNumber = ["6285774523785@s.whatsapp.net",`${settings.NomorOwner}@s.whatsapp.net`]
         dtod = "6285774523785@s.whatsapp.net"
        otod = `${settings.NomorOwner}@s.whatsapp.net`
