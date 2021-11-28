@@ -92,7 +92,7 @@ cmhit = []
 autovn = true
 welcome = true
 antidelete = true
-menuall = false
+menuall = true
 baterai = {
 battery: "" || "Tidak Terdeteksi",
 isCharge: "" || false
@@ -1115,7 +1115,6 @@ menunya = `╭─❒ 「 Bot Info 」 ❒
 ㊫ ${prefix}pin
 ㊫ ${prefix}unpin
 ㊫ ${prefix}setmenu [ _ori/simpel_ ]
-㊫ ${prefix}setallmenu [ _ori/simpel_ ]
 ㊫ ${prefix}leavetime [ _detik/menit/jam_ ]
 ㊫ ${prefix}bukatime [ _detik/menit/jam_ ]
 ㊫ ${prefix}tutuptime [ _detik/menit/jam_ ]
@@ -1600,26 +1599,6 @@ cemde.push(i.id)
 teksnyee += `\n\n*❏ ID :* ${i.id}\n*❏ Cmd :* ${i.chats}`
 }
 reply(teksnyee)
-break
-case 'setallmenu':
-if (!isOwner && !mek.key.fromMe) return sticOwner(from)
-if(args[0] == 'ori'){
-menuall = true
-reply('Sucsess')
-}else if(args[0] == 'simpel'){
-menuall = false
-reply('Sucsess')
-}else if (!c) {
-anu =`Silahkan pilih salah satu di bawah`
- buttons = [{buttonId: 'setallmenu ori', buttonText: {displayText: 'ORI'}, type: 1},{buttonId: 'setallmenu simpel', buttonText: {displayText: 'SIMPEL'}, type: 1}]
-const skuygf = {
-    contentText: `${anu}`,
-    footerText: '*_©kurr_*',
-    buttons: buttons,
-    headerType: 1
-}
-await denz.sendMessage(from, skuygf, MessageType.buttonsMessage, {quoted: ftrol})
-}
 break
 				case 'script':
 		case 'sc':
