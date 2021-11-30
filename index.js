@@ -141,38 +141,84 @@ fetch(`http://ip-api.com/line`).then(res => res.text())
     })   
     
    //WELCOME ON /OFF YA ADICK ADICK//
-        denz.on('group-participants-update', async (anu) => {
-           mem = anu.participants[0]
-			const mdata = await denz.groupMetadata(anu.jid)
-		    try {
-			console.log(anu)
-			if (anu.action == 'add') {
-			const welkom = JSON.parse(fs.readFileSync('./database/welkom.json'))
-        	if(!welkom.includes(mdata.id)) return
-			fkontakk = { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(anu.jid ? { remoteJid: '6283136505591-1604595598@g.us' } : {})}, message: { "contactMessage":{"displayName": `${mdata.subject}`,"vcard":`BEGIN:VCARD\nVERSION:3.0\nN:2;Denz;;;\nFN:Denz\nitem1.TEL;waid=6281337541779:6281337541779\nitem1.X-ABLabel:Mobile\nEND:VCARD` }}}
-		    num = anu.participants[0]
-			try {
-			ppimg = await denz.getProfilePicture(`${num.split('@')[0]}@c.us`)
-			} catch {
-			ppimg = 'https://i0.wp.com/www.gambarunik.id/wp-content/uploads/2019/06/Top-Gambar-Foto-Profil-Kosong-Lucu-Tergokil-.jpg'
-			}
-			let buff = await getBuffer(ppimg)
-			masuk =`𝑿𝑿𝑿 Halo @${num.split('@')[0]} 𝑿𝑿𝑿 \nSelamat Datang Di ${mdata.subject}\n\n*Jangan Lupa Isi*\n*Nama* :\n*Umur* :\n*Gender* :\n*Askot* :\n\nEnjoy Jangan Lupa Kenalan`
-			    denz.sendMessage(mdata.id, masuk, MessageType.text, { quoted: fkontakk, thumbnail: fs.readFileSync('./denz.jpg'), contextInfo: { forwardingScore: 508, isForwarded: true, externalAdReply:{title: `Keluar Dari ${mdata.subject}`,body:"",mediaType:"2",thumbnail:buff,mediaUrl:`https://youtu.be/R3lvRF23CJg`}}})
-			} else if (anu.action == 'remove') {
-			const welkom = JSON.parse(fs.readFileSync('./database/welkom.json'))
-        	if(!welkom.includes(mdata.id)) return
-			fkontakk = { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(anu.jid ? { remoteJid: '6283136505591-1604595598@g.us' } : {})}, message: { "contactMessage":{"displayName": `${mdata.subject}`,"vcard":`BEGIN:VCARD\nVERSION:3.0\nN:2;Denz;;;\nFN:Denz\nitem1.TEL;waid=6281337541779:6281337541779\nitem1.X-ABLabel:Mobile\nEND:VCARD` }}}
+denz.on('group-participants-update', async (anu) => {
+	try {
+		const mdata = await denz.groupMetadata(anu.jid)
+                const behys = mdata.participants.length
+		console.log(anu)
+		if (anu.action == 'add') {
+                if (gcrevoke.includes(anu.jid)) {
+                denz.revokeInvite(anu.jid)
+                }
 			num = anu.participants[0]
+			hesa = `${num}`
+		  mestes = (teks) => {
+					return teks.replace(/['@s whatsapp.net']/g, " ");
+					}
+			resa = `${mestes(hesa)}`
+const jm = moment.tz('Asia/Jakarta').format('HH:mm:ss')
+			let d = new Date
+				let locale = 'id'
+					let gmt = new Date(0).getTime() - new Date('1 Januari 2021').getTime()
+					let weton = ['Pahing', 'Pon','Wage','Kliwon','Legi'][Math.floor(((d * 1) + gmt) / 84600000) % 5]
+					let week = d.toLocaleDateString(locale, { weekday: 'long' })
+					let calender = d.toLocaleDateString(locale, {
+				day: 'numeric',
+				month: 'long',
+				year: 'numeric'
+				})
+pushnem = denz.contacts[num] != undefined ? denz.contacts[num].notify = undefined ? PhoneNumber('+' + num.replace('@s.whatsapp.net', '')).getNumber('international') : denz.contacts[num].notify || denz.contacts[num].vname : PhoneNumber('+' + num.replace('@s.whatsapp.net', '')).getNumber('international')
 			try {
-			ppimg = await denz.getProfilePicture(`${num.split('@')[0]}@c.us`)
+				ppimg = await denz.getProfilePicture(`${anu.participants[0].split('@')[0]}@c.us`)
 			} catch {
-			ppimg = 'https://i0.wp.com/www.gambarunik.id/wp-content/uploads/2019/06/Top-Gambar-Foto-Profil-Kosong-Lucu-Tergokil-.jpg'
+				ppimg = 'pp.jpeg'
 			}
-			let buff = await getBuffer(ppimg)
-			keluar =`Ko @${num.split('@')[0]} keluar, padahal belum donasi`
-			    denz.sendMessage(mdata.id, keluar, MessageType.text, { quoted: fkontakk, thumbnail: fs.readFileSync('./denz.jpg'), contextInfo: { forwardingScore: 508, isForwarded: true, externalAdReply:{title: `Keluar Dari ${mdata.subject}`,body:"",mediaType:"2",thumbnail:buff,mediaUrl:`https://youtu.be/R3lvRF23CJg`}}})
-			} else if (anu.action == 'promote') {
+				exec(`magick 'pp.jpeg' -gravity west -fill '#ffffff' -font 'font-gue.ttf' -size 1280x710 -pointsize 75 -interline-spacing 7.5 -annotate +460-47 '${resa}' -pointsize 51 -annotate +460+83 '${jm} ${calender}' -pointsize 48 -annotate +100+230 'MEMBER + ${behys}' -pointsize 63 -annotate +460+200 'Welcome To ${mdata.subject}' '${ppimg}' -resize %[fx:t?u.w*0.2:u.w]x%[fx:?u.h*0.2:u.h] -gravity center -geometry -430+66 -composite 'hasil.jpg'`)
+				.on('error', () => denz.sendMessage(m.chat, 'error', MessageType.text))
+				.on('exit', () => {
+			denz.sendMessage(mdata.id, fs.readFileSync('pp.jpeg'), MessageType.image, {caption: `SELAMAT DATANG
+┏━━⊱
+┣ NAMA :   
+┣ UMUR :  
+┣ KOTA : 
+┗━━⊱
+Baca_Deskripsi_Dan_Patuhi_Peraturan_Grup @${num.split('@')[0]}`, contextInfo: { mentionedJid: [num] }})
+			})
+		} else if (anu.action == 'remove') {
+		num = anu.participants[0]
+		hesa = `${num}`
+		  mestes = (teks) => {
+					return teks.replace(/['@s whatsapp.net']/g, " ");
+					}
+			resa = `${mestes(hesa)}`
+const jamny = moment.tz('Asia/Jakarta').format('HH:mm:ss')
+			let d = new Date
+				let locale = 'id'
+					let gmt = new Date(0).getTime() - new Date('1 Janua@ri 2021').getTime()
+					let weton = ['Pahing', 'Pon','Wage','Kliwon','Legi'][Math.floor(((d * 1) + gmt) / 84600000) % 5]
+					let week = d.toLocaleDateString(locale, { weekday: 'long' })
+					let calender = d.toLocaleDateString(locale, {
+				day: 'numeric',
+				month: 'long',
+				year: 'numeric'
+				})
+pushnem = denz.contacts[num] != undefined ? denz.contacts[num].notify = undefined ? PhoneNumber('+' + num.replace('@s.whatsapp.net', '')).getNumber('international') : denz.contacts[num].notify || denz.contacts[num].vname : PhoneNumber('+' + num.replace('@s.whatsapp.net', '')).getNumber('international')
+			try {
+				ppimg = await denz.getProfilePicture(`${anu.participants[0].split('@')[0]}@c.us`)
+			} catch {
+				ppimg = 'pp.jpeg'
+			}
+				exec(`magick 'pp.jpeg' -gravity west -fill '#ffffff' -font 'font-gue.ttf' -size 1280x710 -pointsize 75 -interline-spacing 7.5 -annotate +460-47 '${resa}' -pointsize 51 -annotate +460+83 '${jamny} ${calender}' -pointsize 48 -annotate +100+230 'MEMBER - ${behys}' -pointsize 63 -annotate +460+200 'Leaving from ${mdata.subject}' '${ppimg}' -resize %[fx:t?u.w*0.2:u.w]x%[fx:?u.h*0.2:u.h] -gravity center -geometry -430+66 -composite 'hasil.jpg'`)
+				.on('error', () => denz.sendMessage(m.chat, 'error', MessageType.text))
+				.on('exit', () => {
+			denz.sendMessage(mdata.id, fs.readFileSync('pp.jpeg'), MessageType.image, {caption: `┏━━⊱
+┣❏ BABAY BEBAN GROUP
+┗━━⊱
+SEMOGA TIDAK BALIK LAGI YA
+
+Sayonara👋🏻*@${num.split('@')[0]}\n`, contextInfo: { mentionedJid: [num] }})
+			})
+		}else if (anu.action == 'promote') {
 fkontakk = { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(anu.jid ? { remoteJid: '6283136505591-1604595598@g.us' } : {})}, message: { "contactMessage":{"displayName": `${mdata.subject}`,"vcard":`BEGIN:VCARD\nVERSION:3.0\nN:2;Denz;;;\nFN:Denz\nitem1.TEL;waid=6281337541779:6281337541779\nitem1.X-ABLabel:Mobile\nEND:VCARD` }}}
 shp = '◦➛'
 var thu = await denz.getStatus(anu.participants[0], MessageType.text)
