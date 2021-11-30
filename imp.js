@@ -108,7 +108,6 @@ NamaOwner = settings.NamaOwner
 multi =true
 nopref = false
 allpref = false
-autoread = false
 
 // APIKEY
 HunterApi = settings.HunterApi
@@ -901,9 +900,6 @@ await denz.updatePresence(from, Presence.recording)
 if (budy.startsWith('Denz')){
 sendButMessage(from, `${JSON.stringify(me, null, 2)}`, "*_© IMP-XBOT_*", [{buttonId: 'igm', buttonText: {displayText: 'Instagram'}, type: 1},{buttonId: 'ytm', buttonText: {displayText: 'YouTube'}, type: 1}], {quoted:ftrol, contextInfo: { forwardingScore: 508, isForwarded: true}})
 }
-if (!settings.autoread) {
-denz.chatRead(from)
-}
 if(isButton == 'igm'){
 reply('https://www.instagram.com/im_pos_ible990/')
 }
@@ -1108,17 +1104,13 @@ menunya = `╭─❒ 「 Bot Info 」 ❒
 ㊫ ${prefix}addrespon [ _tanya|jawab_ ]
 ㊫ ${prefix}delrespon [ _nama_ ]
 ㊫ ${prefix}listrespon
-㊫ ${prefix}readall
-㊫ ${prefix}unreadall
 ㊫ ${prefix}archive
 ㊫ ${prefix}unarchiveall
 ㊫ ${prefix}pin
 ㊫ ${prefix}unpin
-㊫ ${prefix}setmenu [ _ori/simpel_ ]
 ㊫ ${prefix}leavetime [ _detik/menit/jam_ ]
 ㊫ ${prefix}bukatime [ _detik/menit/jam_ ]
 ㊫ ${prefix}tutuptime [ _detik/menit/jam_ ]
-㊫ ${prefix}nano [ _nama file_ ]
 │
 ㊫─❲ NEW ❳─㊫ツ
 ㊫ ${prefix}jadibot
@@ -1180,18 +1172,13 @@ menunya = `╭─❒ 「 Bot Info 」 ❒
 ㊫ ${prefix}getbio [ _reply target_ ]
 ㊫ ${prefix}promote [ _@tag_ ]
 ㊫ ${prefix}demote [ _@tag_ ]
-㊫ ${prefix}antilink [ _on/off_ ]
-㊫ ${prefix}antivirtex [ _on/off_ ]
-㊫ ${prefix}antiwame [ _on/off_ ]
 ㊫ ${prefix}antibug [ _on/off_ ]
 ㊫ ${prefix} welcome [ _on/off_ ]
 ㊫ ${prefix}creategrup [ _nama|@tag_ ]
 ㊫ ${prefix}tictactoe [ _@tag_ ]
 ㊫ ${prefix}delttt
 ㊫ ${prefix}getpp
-㊫ ${prefix}antiwame
 ㊫ ${prefix}getdeskgc
-㊫ ${prefix}sider [ _reply pesan bot_ ]
 ㊫ ${prefix}hacked [ _teks_ ]
 ㊫ ${prefix}setnamegc [ _teks_ ]
 ㊫ ${prefix}setdeskgc [ _teks_ ]
@@ -1212,7 +1199,6 @@ menunya = `╭─❒ 「 Bot Info 」 ❒
 ㊫ ${prefix}takestick [ _nama|author_ ]
 ㊫ ${prefix}colong [ _reply sticker_ ]
 ㊫ ${prefix}dadu
-㊫ ${prefix}semoji [ _emoji_ ]
 ㊫ ${prefix}attp [ _teks_ ]
 ㊫ ${prefix}toimg
 ㊫ ${prefix}tomp3 [ _reply video_ ]
@@ -1224,11 +1210,6 @@ menunya = `╭─❒ 「 Bot Info 」 ❒
 ㊫ ${prefix}detikvn [ _reply audio caption angka_ ]
 ㊫ ${prefix}detikvideo [ _reply video caption angka_ ]
 │
-㊫─❲ ASUPAN ❳─㊫ツ
-㊫ ${prefix}asupan
-㊫ ${prefix}asupan2
-㊫ ${prefix}asupant3
-│
 ㊫─❲ STORAGE ❳─㊫ツ
 ㊫ ${prefix}listimage
 ㊫ ${prefix}liststicker
@@ -1239,16 +1220,6 @@ menunya = `╭─❒ 「 Bot Info 」 ❒
 ㊫ ${prefix}delvn [ _nama_ ]
 ㊫ ${prefix}addimage [ _nama_ ]
 ㊫ ${prefix}delimage [ _nama_ ]
-│
-㊫─❲ JADI BOT ❳─㊫ツ
-㊫ ${prefix}stopjadibot
-㊫ ${prefix}jadibot
-│
-㊫─❲ EVAL ❳─㊫ツ
-㊫ *x*
-㊫ *>*
-㊫ *=>*
-㊫ *$*
 │
 ㊫─❲ OTHER/FUN ❳─㊫ツ
 ㊫ ${prefix}rate
@@ -1818,19 +1789,6 @@ case 'fetch':
                 } else if (c === 'off'){
                     antidelete = false
                     reply(`Berhasil menonaktifkan antidelete`)
-                } else {
-                    reply(mess.error.api)
-                }
-                break
-                case 'autoread':
-      if (!isOwner && !mek.key.fromMe) return reply(mess.only.ownerB)
-       if (args.length < 1) return reply(`Penggunaan ${prefix}autoread on/off`)
-           if (c === 'on'){
-             autoread = true
-                    reply(`Berhasil mengaktifkan autoread`)
-                } else if (c === 'off'){
-                    autoread = false
-                    reply(`Berhasil menonaktifkan autoread`)
                 } else {
                     reply(mess.error.api)
                 }
