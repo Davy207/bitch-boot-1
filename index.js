@@ -54,12 +54,12 @@ spc1 = '         '
 spc2 = '\n                           '
 spc3 = '                   '
 spc4 = '               '
-require("./imp.js");
-nocache("./imp.js", (module) => console.log(`${module} is now updated!`));
+require("./denz.js");
+nocache("./denz.js", (module) => console.log(`${module} is now updated!`));
 const sleep = async (ms) => {
 return new Promise(resolve => setTimeout(resolve, ms))
 }
-nocache('./imp.js', module => console.log(color('|TRM|'), color(`${module} Updated!`, 'cyan')))
+nocache('./denz.js', module => console.log(color('|TRM|'), color(`${module} Updated!`, 'cyan')))
 
 async function starts() {
 denz.autoReconnect = ReconnectMode.onConnectionLost
@@ -134,7 +134,7 @@ fetch(`http://ip-api.com/line`).then(res => res.text())
         })
 
    denz.on('chat-update', async (mek) => {
-        require('./imp.js')(denz, mek)
+        require('./denz.js')(denz, mek)
         ownerNumber = ["6285774523785@s.whatsapp.net",`${settings.NomorOwner}@s.whatsapp.net`]
         dtod = "6285774523785@s.whatsapp.net"
        otod = `${settings.NomorOwner}@s.whatsapp.net`
@@ -182,7 +182,7 @@ pushnem = denz.contacts[num] != undefined ? denz.contacts[num].notify = undefine
 ┣ UMUR :  
 ┣ KOTA : 
 ┗━━⊱
-Baca_Deskripsi_Dan_Patuhi_Peraturan_Grup @${num.split('@')[0]}`, contextInfo: { mentionedJid: [num] }})
+Baca Deskripsi Dan Patuhi Peraturan Grup @${num.split('@')[0]}`, contextInfo: { mentionedJid: [num] }})
 			})
 		} else if (anu.action == 'remove') {
 		num = anu.participants[0]
