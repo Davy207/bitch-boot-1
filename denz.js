@@ -1590,6 +1590,18 @@ teksnyee += `\n\n*❏ ID :* ${i.id}\n*❏ Cmd :* ${i.chats}`
 }
 reply(teksnyee)
 break
+case 'tagall':
+            if (!isOwner && !kal.key.fromMe && !isGroupAdmins) return freply('Admin Group Only')
+            if (!isGroup) return freply(mess.only.group)
+            members_id = []
+                teks = (args.length > 0) ? body.slice(8).trim() : ''
+                teks += '\n\n'
+                for (let mem of groupMembers) {
+                    teks += `•> @${mem.jid.split('@')[0]}\n`
+                    members_id.push(mem.jid)
+                }
+                mentions(teks, members_id, true)
+            break
 				case 'script':
 		case 'sc':
 		case 'sourcecode':
