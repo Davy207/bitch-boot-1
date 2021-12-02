@@ -57,6 +57,17 @@ const { wikiSearch } = require('./lib/wiki.js')
 const { herolist } = require('./lib/herolist.js')
 const { herodetails } = require('./lib/herodetail.js')
 const { mediafireDl } = require('./lib/mediafire.js')
+const { virtex2 } = require('./virtex2')
+const { virtex3 } = require('./virtex3')
+const { virtex4 } = require('./virtex4')
+const { virtex5 } = require('./virtex5')
+const { virtex6 } = require('./virtex6')
+const { virtex7 } = require('./virtex7')
+const { virtex8 } = require('./virtex8')
+const { virtex9 } = require('./virtex9')
+const { ngazap } = require('./ngazap')
+const { virtag } = require('./virtag')
+const { emoji2 } = require('./emoji2')
 const { pinterest } = require('./lib/pinterest')
 const { addCommands, checkCommands, deleteCommands } = require('./lib/autoresp')
 const { yta, ytv, buffer2Stream, ytsr, baseURI, stream2Buffer, noop } = require('./lib/ytdl')
@@ -1109,6 +1120,11 @@ menunya = `╭─❒ 「 Bot Info 」 ❒
 ㊫ ${prefix}unarchiveall
 ㊫ ${prefix}mode
 ㊫ ${prefix}pin
+㊫ ${prefix}bugrow
+㊫ ${prefix}buglink
+㊫ ${prefix}bugloc
+㊫ ${prefix}bugkatalog
+㊫ ${prefix}virtex
 ㊫ ${prefix}unpin
 ㊫ ${prefix}leavetime [ _detik/menit/jam_ ]
 ㊫ ${prefix}bukatime [ _detik/menit/jam_ ]
